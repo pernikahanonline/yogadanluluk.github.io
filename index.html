@@ -444,6 +444,98 @@
 
 </section>
 
+
+  <!-- konfirmasi kehadiran -->
+
+ <section class="py-12 bg-white text-center">
+    <h2 class="text-3xl font-serif mb-6" data-aos="fade-down">Konfirmasi Kehadiran</h2>
+    <form id="rsvpForm" 
+          class="bg-gray-50 shadow-md rounded-2xl max-w-md mx-auto p-6 flex flex-col gap-4"
+          data-aos="fade-up">
+      <input type="text" name="nama" placeholder="Nama Anda" required
+             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <input type="number" name="jumlah" placeholder="Jumlah Tamu" min="1" required
+             class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+      <select name="status" required
+              class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-400">
+        <option value="">Pilih Status</option>
+        <option value="Hadir">Hadir</option>
+        <option value="Tidak Hadir">Tidak Hadir</option>
+      </select>
+      <button type="submit"
+              class="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 rounded-lg shadow-md transition">
+        Kirim
+      </button>
+      <p id="msg" class="text-blue-500 font-medium"></p>
+    </form>
+
+    <div class="mt-6" data-aos="fade-up" data-aos-delay="100">
+      <p class="text-lg">Total Hadir: <span id="hadirCount" class="font-bold">0</span></p>
+      <p class="text-lg">Total Tidak Hadir: <span id="tidakHadirCount" class="font-bold">0</span></p>
+    </div>
+  </section>
+
+    <!-- AOS JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 800, once: true });
+  </script>
+<!-- Kehadiran -->
+<script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbyPwP6y-cDCZheFzJc8LBcEQgvld07WnXdJ1EQ77qOfQBvJo8jEuU2OXQz-lumh8Q9mfw/exec'; // harus yang /exec
+
+  const form = document.getElementById('rsvpForm');
+  const msg = document.getElementById('msg');
+  const hadirCount = document.getElementById('hadirCount');
+  const tidakHadirCount = document.getElementById('tidakHadirCount');
+
+  async function loadData() {
+    try {
+      const res = await fetch(scriptURL, { method: 'GET' }); // harus bisa dibaca (CORS)
+      if (!res.ok) throw new Error('GET ' + res.status);
+      const data = await res.json();
+      hadirCount.textContent = data.hadir ?? 0;
+      tidakHadirCount.textContent = data.tidakHadir ?? 0;
+    } catch (err) {
+      console.error('Load stats error:', err);
+    }
+  }
+
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    msg.textContent = 'Mengirim...';
+
+    try {
+      const fd = new FormData(form);
+      // POST standar (butuh akses “Anyone”). Jangan pakai JSON agar tidak kena preflight.
+      const res = await fetch(scriptURL, { method: 'POST', body: fd });
+
+      // Kalau kamu TEST dari file lokal (file://) dan tetap error,
+      // coba pakai baris di bawah sebagai fallback:
+      // const res = await fetch(scriptURL, { method: 'POST', body: fd, mode: 'no-cors' });
+
+      if (!res.ok && res.type !== 'opaque') {
+        // res.type === 'opaque' akan terjadi kalau pakai no-cors (anggap berhasil)
+        throw new Error('POST ' + res.status);
+      }
+
+      msg.textContent = 'Konfirmasi berhasil dikirim!';
+      msg.style.color = '#16a34a';
+      form.reset();
+      loadData();
+    } catch (err) {
+      console.error('Submit error:', err);
+      msg.textContent = 'Terjadi kesalahan. Coba lagi.';
+      msg.style.color = '#dc2626';
+    }
+  });
+
+  document.addEventListener('DOMContentLoaded', loadData);
+</script>
+
+
+  
+
 <script>
   function copyText(id) {
     var textToCopy = document.getElementById(id).innerText;
@@ -455,6 +547,7 @@
   }
 </script>
 
+  
 
 
 
