@@ -46,7 +46,7 @@
 
   <section id="hero"
     class="hero w-100 h-100 p-3 mx-auto text-center d-flex justify-content-center align-items-center text-white">
-    <main>
+    <main data-aos="fade-down">
       <h4>The <span>Wedding Of</span></h4>
       <h1>Yoga & Luluk</h1>
       <p>Akan melangsungkan resepsi pernikahan dalam:</p>
@@ -88,7 +88,7 @@
   </nav>
 
   <section id="home" class="home">
-    <div class="container">
+    <div class="container" data-aos="fade-down">
       <div class="row justify-content-center">
         <div class="col-md-8 text-center">
           <h2>Acara Pernikahan</h2>
@@ -132,7 +132,7 @@
 
 
   <section id="info" class="info">
-    <div class="container">
+    <div class="container" data-aos="fade-down">
       <div class="row justify-content-center">
         <div class="col-md-8 col-10 text-center">
           <h2>Informasi Acara</h2>
@@ -259,7 +259,7 @@
   </section> -->
 
   <section id="gallery" class="gallery">
-    <div class="container">
+    <div class="container" data-aos="fade-down">
       <div class="row justify-content-center">
         <div class="col-md-8 col-10 text-center">
           <span>Memori Kisah Kami</span>
@@ -382,7 +382,7 @@
   </section> -->
 
   <!-- <section id="gifts" class="gifts">
-    <div class="container">
+    <div class="container" >
       <div class="row justify-content-center">
         <div class="col-md-8 col-10 text-center">
           <span>ungkapan tanda kasih</span>
@@ -414,7 +414,7 @@
   </section> -->
 
 <section id="gifts" class="gifts">
-  <div class="container">
+  <div class="container" data-aos="fade-down">
     <div class="row justify-content-center">
       <div class="col-md-8 col-10 text-center">
         <span>ungkapan tanda kasih</span>
@@ -480,8 +480,14 @@
     <!-- AOS JS -->
   <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    AOS.init({ duration: 800, once: true });
-  </script>
+  AOS.init({
+    once: false,
+    mirror: true,
+    offset: 120, // jarak sebelum animasi mulai
+    duration: 800, // durasi animasi dalam ms
+    easing: 'ease-in-out' // efek transisi
+  });
+</script>
 <!-- Kehadiran -->
 <script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbyPwP6y-cDCZheFzJc8LBcEQgvld07WnXdJ1EQ77qOfQBvJo8jEuU2OXQz-lumh8Q9mfw/exec'; // harus yang /exec
