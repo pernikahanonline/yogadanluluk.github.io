@@ -1,0 +1,197 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', Georgia, serif;
+}
+
+.wedding-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* Header Section */
+.header {
+  text-align: center;
+  margin-bottom: 4rem;
+  animation: scaleIn 0.4s ease-out;
+}
+
+.title {
+  font-size: 3rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, hsl(26, 6%, 25%), hsl(341, 11%, 35%));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  margin-bottom: 2rem;
+}
+
+.address-section {
+  max-width: 600px;
+  margin: 0 auto 2rem;
+}
+
+.address {
+  font-size: 1.125rem;
+  line-height: 1.75;
+  color: hsl(20, 10%, 50%);
+}
+
+.map-container {
+  max-width: 800px;
+  margin: 2rem auto;
+}
+
+.map-container iframe {
+  border-radius: 1rem;
+  box-shadow: 0 10px 40px -10px hsl(25, 75%, 65%, 0.2);
+  margin-bottom: 1rem;
+}
+
+.map-container.secondary {
+  text-align: center;
+  margin-top: 2rem;
+}
+
+.btn-map {
+  display: inline-block;
+  background: linear-gradient(135deg, hsl(20, 4%, 16%), hsl(345, 2%, 32%));
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 9999px;
+  text-decoration: none;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px -2px hsl(25, 75%, 65%, 0.3);
+}
+
+.btn-map:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 25px -2px hsl(25, 75%, 65%, 0.4);
+}
+
+/* Events Grid */
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 2rem;
+  margin-top: 3rem;
+}
+
+/* Event Card */
+.event-card {
+  background: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 4px 20px -2px hsl(20, 20%, 20%, 0.1);
+  transition: all 0.3s ease;
+  animation: fadeIn 0.6s ease-out backwards;
+}
+
+.event-card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.event-card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.event-card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.event-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 12px 40px -2px hsl(20, 20%, 20%, 0.15);
+}
+
+.card-header {
+  background: linear-gradient(135deg, hsl(30, 4%, 28%), hsl(336, 4%, 26%));
+  color: white;
+  padding: 1.5rem;
+  font-size: 1.5rem;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-weight: 600;
+  text-align: center;
+}
+
+.card-body {
+  padding: 2rem;
+}
+
+.event-details {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1rem;
+  color: hsl(20, 20%, 20%);
+}
+
+.icon {
+  width: 24px;
+  height: 24px;
+  color: hsl(25, 75%, 65%);
+  flex-shrink: 0;
+}
+
+.card-footer {
+  background: hsl(30, 50%, 95%);
+  padding: 1.5rem;
+  font-size: 0.875rem;
+  line-height: 1.5;
+  color: hsl(20, 10%, 50%);
+  text-align: center;
+  font-style: italic;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.95);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .title {
+    font-size: 2rem;
+  }
+  
+  .events-grid {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+  
+  body {
+    padding: 1rem 0.5rem;
+  }
+}
